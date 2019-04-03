@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Weather Forecast" Height="900" Width="800">
 
-
     <Border Padding="30">
-    <Border.Background>
+
+        <Border.Background>
             <LinearGradientBrush>
                 <GradientStop Color="LightSteelBlue" Offset="1" />
                 <GradientStop Color="#FFD4D7DB" Offset="0" />
@@ -17,7 +17,7 @@
         </Border.Background>
 
         <StackPanel>
-                               
+
             <!-- Grid za TextBox i  Button na vrhu stranice -->
             <Grid Height="35">
 
@@ -30,13 +30,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Source="/WeatherApp;component/Images/more.png" Margin="0 0 0 0" Grid.Column="0"/>
+                <Image Source="/WeatherApp;component/Images/menu.png" Margin="0 0 0 0" Grid.Column="0"/>
                 <TextBox x:Name="CityText" Background="#eee" FontSize="15"  Text="Enter City Name..." Margin="0,0,0,0" Grid.Column="1" Padding="7" />
-                <Image Source="/WeatherApp;component/Images/star.png" Margin="0 0 0 0" Grid.Column="4"/>
-                <Image Source="/WeatherApp;component/Images/reload.png" Margin="1" Grid.Column="5" />
+                <Image Source="/WeatherApp;component/Images/search.png" Margin="0 0 0 0" Grid.Column="2"/>
+                <Image Source="/WeatherApp;component/Images/star.png" Margin="50 0 0 0" Grid.Column="4"/>
+                <Image Source="/WeatherApp;component/Images/refresh.png" Margin="1" Grid.Column="5" />
 
             </Grid>
-            
+
             <!-- Grid za 5 StackPanela -> za prikaz informacija -->
             <Grid Height="400" Margin="0 30 0 0">
                 <Grid.ColumnDefinitions>
@@ -48,13 +49,16 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- StackPanel za DAN 1 -->
+
                 <StackPanel Grid.Column="0" Margin="0 0 10 0" Background="White">
+                    <Border CornerRadius="20 20 20 20"/>
                     <Image Source="/WeatherApp;component/Images/sunny.png" Margin="20"/>
-                    
+
                     <DataGrid Margin="15 10 15 0" Height="230" GridLinesVisibility="All" HeadersVisibility="None" Background="White">
-                       
-                    </DataGrid>               
+
+                    </DataGrid>
                 </StackPanel>
+
 
                 <!-- StackPanel za DAN 2 -->
                 <StackPanel Grid.Column="1" Margin="0 0 10 0" Background="White">
@@ -91,26 +95,44 @@
 
             </Grid >
 
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="0 20 10 0">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0 20 10 0">
                 <!-- Grid za jedan dan detaljno -->
-                <Grid Height="300" Margin="0 0 00 0" >
+                <Grid Height="300" Margin="0 0 0 0" >
                     <DataGrid Margin="0 0 0 0">
+                        <!-- Stilizovanje headera u datagridu -->
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="Height" Value="25" />
+                                <Setter Property="FontWeight" Value="Medium" />
+                                <Setter Property="FontStyle" Value="Oblique" />
+                                <Setter Property="SeparatorBrush" Value="LightGray" />
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Margin="57,0"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
 
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="Hours"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Type"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Description"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Temperature"></DataGridTextColumn>
-                        
+                            <DataGridTextColumn Header="Hours" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Type" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Description" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Temperature" CanUserReorder="False"/>
+
                         </DataGrid.Columns>
+
                     </DataGrid>
                 </Grid>
             </ScrollViewer>
-            
+
         </StackPanel>
-        
+
 
     </Border>
-   
+
 </Window>

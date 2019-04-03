@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/star.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/menu.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/refresh.png")]
 
 
