@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <connectionOption>localhost</connectionOption>
+ <rdmgr>
+  <timestamp type="u64_t">1554238758</timestamp>
+  <hostname>DESKTOP-15VK1LA</hostname>
+  <os>windows</os>
+  <product>Intel® Advisor 2018 Update 3</product>
+  <buildNumber type="s32_t">558307</buildNumber>
+  <logicalCPUCount type="s32_t">4</logicalCPUCount>
+  <physicalCoreCount type="s32_t">4</physicalCoreCount>
+  <CPUFrequency type="s64_t">3300000000</CPUFrequency>
+  <CPUFamily type="s32_t">6</CPUFamily>
+  <CPUModel type="s32_t">42</CPUModel>
+  <CPUStepping type="s32_t">7</CPUStepping>
+  <CPUBrandName>       Intel(R) Core(TM) i5-2500K CPU @ 3.30GHz</CPUBrandName>
+  <isa>avx</isa>
+ </rdmgr>
+ <contextValues type="bag"/>
+</root>

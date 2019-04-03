@@ -1,0 +1,15 @@
+C:\Dev\HCI\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe.config
+C:\Dev\HCI\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe
+C:\Dev\HCI\WeatherApp\WeatherApp\bin\Debug\WeatherApp.pdb
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csprojAssemblyReference.cache
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\MainWindow.g.cs
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\App.g.cs
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp_MarkupCompile.cache
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp_MarkupCompile.lref
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\MainWindow.baml
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.g.resources
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
+C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
