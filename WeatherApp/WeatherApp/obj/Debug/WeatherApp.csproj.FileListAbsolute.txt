@@ -13,3 +13,22 @@ C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.ca
 C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
 C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
 C:\Dev\HCI\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe.config
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\WeatherApp.pdb
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csprojAssemblyReference.cache
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\MainWindow.g.cs
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\App.g.cs
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp_MarkupCompile.cache
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp_MarkupCompile.lref
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\MainWindow.baml
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.g.resources
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.pdb
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+D:\SIIT\Interakcija čovek-računar\Projekti\HCI_Projekat1\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete

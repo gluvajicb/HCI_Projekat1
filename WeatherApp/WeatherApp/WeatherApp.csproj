@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,6 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Loading.cs" />
+    <Compile Include="WeatherInfo.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +91,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,25 +101,38 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\background.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\cloud.png" />
     <Resource Include="Images\rain.png" />
     <Resource Include="Images\snowflake.png" />
     <Resource Include="Images\sunny.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\favorite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\reload.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\more.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\added-favourite.png" />
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear_moon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\thunder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\few_clouds.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
