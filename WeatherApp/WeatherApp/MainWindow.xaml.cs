@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Linq;
+
 
 namespace WeatherApp
 {
@@ -16,7 +20,13 @@ namespace WeatherApp
             info = Loading.getInfo();
             DataContext = info;
 
+            init();
+        }
+
+        private void init()
+        {
             InitializeComponent();
+            InitializeFavourites();
 
             CityText.Text = "Enter City Name...";
 
@@ -24,6 +34,19 @@ namespace WeatherApp
             CityText.LostFocus += AddText;
 
             loadAllIcon();
+        }
+
+        private void InitializeFavourites()
+        {
+            Menu.Items.Clear();
+
+            foreach (string line in File.ReadLines("favourites.txt"))
+            {
+                MenuItem item = new MenuItem();
+                item.Header = line.ToString();
+                item.Click += ShowFavourite;
+                Menu.Items.Add(item);
+            }
         }
         /*
          * Ucitavanje svih ikonica
@@ -50,9 +73,9 @@ namespace WeatherApp
             icon = loadIcon(uri);
             Day4.Source = icon;
 
-            uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
+            /*uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
             icon = loadIcon(uri);
-            Day5.Source = icon;
+            Day5.Source = icon;*/
         }
 
         /*
@@ -110,11 +133,18 @@ namespace WeatherApp
                 case "snow":
                     uri = "/Images/snowflake.png";
                     break;
+                case "light snow":
+                    uri = "/Images/snowflake.png";
+                    break;
+                case "snowflake":
+                    uri = "/Images/snowflake.png";
+                    break;
                 case "mist":
                     uri = "/Images/fog.png";
                     break;
 
                 default:
+                    uri = "/Images/noicon.png";
                     break;
             }
 
@@ -131,9 +161,10 @@ namespace WeatherApp
                                 : Visibility.Visible;
         }
 
-        private void Search(object sender, RoutedEventArgs e)
+        private void ShowFavourite(object sender, RoutedEventArgs e)
         {
-            string city = CityText.Name;
+            MenuItem item = (MenuItem)sender;
+            string city = item.Header.ToString();
             string cityID = Loading.getCityId(city);
 
             if (cityID != "")
@@ -141,7 +172,34 @@ namespace WeatherApp
                 string url = Loading.ForecastUrl.Replace("@LOC@", cityID);
                 string weatherResponse = Loading.loadWeather(url);
                 info = Loading.convert(weatherResponse, cityID);
+                init();
+                Location.Text = info.Location;
             }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("City you were looking for can't be found. Try again.");
+            }
+        }
+
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            string city = CityText.Text;
+            string cityID = Loading.getCityId(city);
+
+            if (cityID != "")
+            {
+                string url = Loading.ForecastUrl.Replace("@LOC@", cityID);
+                string weatherResponse = Loading.loadWeather(url);
+                info = Loading.convert(weatherResponse, cityID);
+                init();
+                Location.Text = info.Location;
+
+                AddToHistory();
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("City you were looking for can't be found. Try again.");
+            } 
         }
 
         public void RemoveText(object sender, EventArgs e)
@@ -153,6 +211,53 @@ namespace WeatherApp
         {
             if (string.IsNullOrWhiteSpace(CityText.Text))
                 CityText.Text = "Enter City Name...";
+        }
+
+        private void AddToFavourites(object sender, RoutedEventArgs e)
+        {
+            string path = "favourites.txt";
+            if (!isInFavourites(info.Location))
+            {
+                using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
+                {
+                
+                    sw.WriteLine(info.Location);
+                    MessageBoxResult result = MessageBox.Show("City has been added to favourites.");
+                }
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Your city is already in favourites!");
+            }
+        }
+
+        private void AddToHistory()
+        {
+            string path = "history.txt";
+
+            using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
+            {
+                sw.WriteLine(info.Location);
+                MessageBoxResult result = MessageBox.Show("City has been added to history.");
+            }
+
+            var lines = File.ReadAllLines(path).Skip(1);
+            if (lines.Count() > 5) {
+                File.WriteAllLines(path, lines);
+            }
+        }
+
+        private bool isInFavourites(string city)
+        {
+            foreach (string line in File.ReadLines("favourites.txt"))
+                if (city == line)
+                    return true; 
+            return false;
+        }
+
+        private void Refresh(object sender, RoutedEventArgs e)
+        {
+            init();
         }
     }
 }

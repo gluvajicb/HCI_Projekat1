@@ -26,7 +26,7 @@
                         <VirtualizingStackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem Header="Favourites"/>
+                <MenuItem Name="FavouritesMenu" Header="Favourites"/>
                 <MenuItem Header="History"/>
             </Menu>
 
@@ -63,7 +63,7 @@
                 </Button>
 
                 <!-- Clickable ikonica za dodavanje u faovurites -->
-                <Button Grid.Column="4" Width="20" Height="20" Cursor="Hand" ToolTip="Add to Favourites">
+                <Button Grid.Column="4" Click="AddToFavourites" Width="20" Height="20" Cursor="Hand" ToolTip="Add to Favourites">
                     <Button.Template>
                         <ControlTemplate>            
                             <Image Source="/WeatherApp;component/Images/star.png"/>
@@ -72,7 +72,7 @@
                 </Button>
 
                 <!-- Clickable ikonica za dodavanje u refresh -->
-                <Button Grid.Column="5"  Width="20" Height="20" Cursor="Hand" ToolTip="Refresh">
+                <Button Grid.Column="5" Click="Refresh" Width="20" Height="20" Cursor="Hand" ToolTip="Refresh">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="/WeatherApp;component/Images/refresh.png"/>
@@ -90,13 +90,8 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0}, {1}">
-                                <Binding Path="Location" />
-                                <Binding Path="Country" />
-                            </MultiBinding>
-                        </TextBlock.Text>
+                    <TextBlock Name="Location" Grid.Row="0" Text="{Binding Path=Location}" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        
                     </TextBlock>
                     <TextBlock Text="{Binding Path=Forecast[0].DateStr}" Grid.Row="1" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <Grid Grid.Row="2">
