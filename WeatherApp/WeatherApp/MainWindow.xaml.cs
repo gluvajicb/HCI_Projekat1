@@ -54,6 +54,9 @@ namespace WeatherApp
             {
                 line.Values.Add(t.Temperature);
                 info.Labels[i] = (t.Time.Hour) + ":00h";
+
+                if (i == 7)
+                    break;
                 i++;
             }
 
@@ -103,9 +106,15 @@ namespace WeatherApp
             icon = loadIcon(uri);
             Day4.Source = icon;
 
-            uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
-            icon = loadIcon(uri);
-            Day5.Source = icon;
+            try
+            {
+                uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
+                icon = loadIcon(uri);
+                Day5.Source = icon;
+            }
+            catch {
+                MessageBoxResult result = MessageBox.Show("A weather for fifth day will be available in few hours.");
+            }
         }
 
         /*
@@ -211,6 +220,7 @@ namespace WeatherApp
                 string url = Loading.ForecastUrl.Replace("@LOC@", cityID);
                 string weatherResponse = Loading.loadWeather(url);
                 info = Loading.convert(weatherResponse, cityID);
+                info.Collection = new SeriesCollection();
                 init();
                 Location.Text = info.Location;
             }
@@ -310,32 +320,64 @@ namespace WeatherApp
 
         private void DayZero(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            info.Collection.Clear();
-            detailedView(0);
+            try
+            {
+                info.Collection.Clear();
+                detailedView(0);
+            }
+            catch {
+                MessageBoxResult result = MessageBox.Show("Hourly view is not available right now. Please try again later.");
+            }
         }
 
         private void DayOne(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            info.Collection.Clear();
-            detailedView(1);
+            try
+            {
+                info.Collection.Clear();
+                detailedView(1);
+            }
+            catch {
+                MessageBoxResult result = MessageBox.Show("Hourly view is not available right now. Please try again later.");
+            }
         }
 
         private void DayTwo(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            info.Collection.Clear();
-            detailedView(2);
+            try
+            {
+                info.Collection.Clear();
+                detailedView(2);
+            }
+            catch {
+                MessageBoxResult result = MessageBox.Show("Hourly view is not available right now. Please try again later.");
+            }
         }
 
         private void DayThree(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            info.Collection.Clear();
-            detailedView(3);
+            try
+            {
+                info.Collection.Clear();
+                detailedView(3);
+            }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("Hourly view is not available right now. Please try again later.");
+            }
         }
 
         private void DayFour(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            info.Collection.Clear();
-            detailedView(4);
+            try
+            {
+                info.Collection.Clear();
+                detailedView(4);
+            }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("Hourly view is not available right now. Please try again later.");
+            }
         }
     }
 }
