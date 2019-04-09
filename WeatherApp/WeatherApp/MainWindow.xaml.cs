@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Linq;
-
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace WeatherApp
 {
@@ -34,6 +35,30 @@ namespace WeatherApp
             CityText.LostFocus += AddText;
 
             loadAllIcon();
+
+            info.CurrentDay = info.Forecast[0].Day;
+            detailedView(0);
+        }
+
+        private void detailedView(int day)
+        {
+            LineSeries line = new LineSeries();
+            line.Title = "";
+            line.Values = new ChartValues<int>();
+            line.PointGeometry = DefaultGeometries.Circle;
+
+            int i = 0;
+
+            foreach (TimeInfo t in info.Forecast[day].Temperature)
+            {
+                line.Values.Add(t.Temperature);
+                info.Labels[i] = (t.Time.Hour) + ":00h";
+                i++;
+            }
+
+            info.Collection.Add(line);
+
+            info.YFormatter = value => value.ToString();
         }
 
         private void InitializeFavourites()

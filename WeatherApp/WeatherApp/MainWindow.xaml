@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApp"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Weather Forecast" SizeToContent="WidthAndHeight" MaxHeight="400" MinHeight="400" MinWidth="500">
+        Title="Weather Forecast" SizeToContent="WidthAndHeight" MinHeight="450" MinWidth="650">
 
     <Border Padding="10">
         <Border.Background>
             <LinearGradientBrush>
-                <GradientStop Color="LightSteelBlue" Offset="1" />
+                <GradientStop Color="LightSteelBlue" Offset="1"/>
                 <GradientStop Color="#FFD4D7DB" Offset="0" />
             </LinearGradientBrush>
         </Border.Background>
@@ -257,65 +258,22 @@
                 <!-- Grid za 5 StackPanela -> za prikaz informacija -->
 
                 <!-- Grid za jedan dan detaljno -->
-                <Grid Margin="5 30 5 0">
-                    <Grid.Background>
-                        <SolidColorBrush Color="White" Opacity="0.60"/>
-                    </Grid.Background>
+                <Grid Height="130" Margin="5 10 5 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <!-- Sati -->
-                    <TextBlock Text="00:00" Grid.Row="0" Grid.Column="0" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="03:00" Grid.Row="0" Grid.Column="1" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="06:00" Grid.Row="0" Grid.Column="2" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="09:00" Grid.Row="0" Grid.Column="3" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="12:00" Grid.Row="0" Grid.Column="4" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="15:00" Grid.Row="0" Grid.Column="5" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="18:00" Grid.Row="0" Grid.Column="6" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="21:00" Grid.Row="0" Grid.Column="7" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="24:00" Grid.Row="0" Grid.Column="8" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-                    <!-- Ikonice -->
-                    <Image Height="25"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Height="25"  Grid.Row="1" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-
-                    <!-- Temperature -->
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="0" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="1" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="2" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="3" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="4" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="5" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="6" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="7" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Temp" Grid.Row="2" Grid.Column="8" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    
-
+                    <TextBlock Text="{Binding CurrentDay}" Grid.Row="0" FontSize="10"/>
+                    <lvc:CartesianChart Series="{Binding Collection}" Grid.Row="1">
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Temperature" LabelFormatter="{Binding YFormatter}" Foreground="Black"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Hour" Labels="{Binding Labels}" Foreground="Black"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                    </lvc:CartesianChart>
                 </Grid>
-
-
             </StackPanel>
         </DockPanel>
     </Border>
