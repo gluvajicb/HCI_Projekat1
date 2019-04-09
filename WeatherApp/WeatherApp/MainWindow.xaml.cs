@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Linq;
-
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace WeatherApp
 {
@@ -34,18 +35,46 @@ namespace WeatherApp
             CityText.LostFocus += AddText;
 
             loadAllIcon();
+
+            info.CurrentDay = info.Forecast[0].Day;
+            detailedView(0);
+        }
+
+        private void detailedView(int day)
+        {
+
+            LineSeries line = new LineSeries();
+            line.Title = "";
+            line.Values = new ChartValues<int>();
+            line.PointGeometry = DefaultGeometries.Circle;
+
+            int i = 0;
+
+            foreach (TimeInfo t in info.Forecast[day].Temperature)
+            {
+                line.Values.Add(t.Temperature);
+                info.Labels[i] = (t.Time.Hour) + ":00h";
+                i++;
+            }
+
+            info.Collection.Add(line);
+
+            info.YFormatter = value => value.ToString();
         }
 
         private void InitializeFavourites()
         {
             Menu.Items.Clear();
 
-            foreach (string line in File.ReadLines("favourites.txt"))
+            if (File.Exists("favourites.txt"))
             {
-                MenuItem item = new MenuItem();
-                item.Header = line.ToString();
-                item.Click += ShowFavourite;
-                Menu.Items.Add(item);
+                foreach (string line in File.ReadLines("favourites.txt"))
+                {
+                    MenuItem item = new MenuItem();
+                    item.Header = line.ToString();
+                    item.Click += ShowFavourite;
+                    Menu.Items.Add(item);
+                }
             }
         }
         /*
@@ -73,9 +102,9 @@ namespace WeatherApp
             icon = loadIcon(uri);
             Day4.Source = icon;
 
-            /*uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
+            uri = getIconURI(info.Forecast[4].Description, DateTime.Parse("12:00:00"));
             icon = loadIcon(uri);
-            Day5.Source = icon;*/
+            Day5.Source = icon;
         }
 
         /*
@@ -220,8 +249,11 @@ namespace WeatherApp
             {
                 using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
                 {
-                
                     sw.WriteLine(info.Location);
+                    MenuItem item = new MenuItem();
+                    item.Header = info.Location;
+                    item.Click += ShowFavourite;
+                    Menu.Items.Add(item);
                     MessageBoxResult result = MessageBox.Show("City has been added to favourites.");
                 }
             }
@@ -263,6 +295,36 @@ namespace WeatherApp
             string weatherResponse = Loading.loadWeather(url);
             info = Loading.convert(weatherResponse, info.ID);
             init();
+        }
+
+        private void DayZero(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            info.Collection.Clear();
+            detailedView(0);
+        }
+
+        private void DayOne(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            info.Collection.Clear();
+            detailedView(1);
+        }
+
+        private void DayTwo(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            info.Collection.Clear();
+            detailedView(2);
+        }
+
+        private void DayThree(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            info.Collection.Clear();
+            detailedView(3);
+        }
+
+        private void DayFour(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            info.Collection.Clear();
+            detailedView(4);
         }
     }
 }

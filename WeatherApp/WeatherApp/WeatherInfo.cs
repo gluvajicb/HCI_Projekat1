@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace WeatherApp
 {
@@ -14,6 +12,11 @@ namespace WeatherApp
         public string Country { get; set; }
 
         public List<DayInfo> Forecast { get; set; } = new List<DayInfo>();
+
+        public string[] Labels { get; set; } = new string[8];
+        public SeriesCollection Collection { get; set; } = new SeriesCollection();
+        public Func<int, string> YFormatter { get; set; }
+        public string CurrentDay { get; set; }
     }
 
     class DayInfo
