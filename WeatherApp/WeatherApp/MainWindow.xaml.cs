@@ -220,7 +220,6 @@ namespace WeatherApp
                 string url = Loading.ForecastUrl.Replace("@LOC@", cityID);
                 string weatherResponse = Loading.loadWeather(url);
                 info = Loading.convert(weatherResponse, cityID);
-                info.Collection = new SeriesCollection();
                 init();
                 Location.Text = info.Location;
             }
