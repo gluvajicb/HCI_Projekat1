@@ -238,7 +238,6 @@ namespace WeatherApp
             using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
             {
                 sw.WriteLine(info.Location);
-                MessageBoxResult result = MessageBox.Show("City has been added to history.");
             }
 
             var lines = File.ReadAllLines(path).Skip(1);
@@ -249,14 +248,20 @@ namespace WeatherApp
 
         private bool isInFavourites(string city)
         {
-            foreach (string line in File.ReadLines("favourites.txt"))
-                if (city == line)
-                    return true; 
+            if (File.Exists("favourites.txt"))
+            {
+                foreach (string line in File.ReadLines("favourites.txt"))
+                    if (city == line)
+                        return true;
+            } 
             return false;
         }
 
         private void Refresh(object sender, RoutedEventArgs e)
         {
+            string url = Loading.ForecastUrl.Replace("@LOC@", info.ID);
+            string weatherResponse = Loading.loadWeather(url);
+            info = Loading.convert(weatherResponse, info.ID);
             init();
         }
     }
