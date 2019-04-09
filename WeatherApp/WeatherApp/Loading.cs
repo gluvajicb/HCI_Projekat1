@@ -30,7 +30,7 @@ namespace WeatherApp
 
 
             // Pronalazak id grada
-            string cityID = getCityId(cityName);
+            string cityID = getCityId("Belgrade");
             Console.WriteLine($"Id: {cityID}");
 
             // Ucitavanje podataka (api poziv)

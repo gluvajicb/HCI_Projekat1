@@ -70,8 +70,9 @@ namespace WeatherApp
             {
                 foreach (string line in File.ReadLines("favourites.txt"))
                 {
+                    string[] infos = line.Split(',');
                     MenuItem item = new MenuItem();
-                    item.Header = line.ToString();
+                    item.Header = infos[1];
                     item.Click += ShowFavourite;
                     Menu.Items.Add(item);
                 }
@@ -194,7 +195,16 @@ namespace WeatherApp
         {
             MenuItem item = (MenuItem)sender;
             string city = item.Header.ToString();
-            string cityID = Loading.getCityId(city);
+            string cityID = "";
+            foreach (string line in File.ReadLines("favourites.txt"))
+            {
+                string[] infos = line.Split(',');
+                if (city == infos[1])
+                {
+                    cityID = infos[0];
+                    break;
+                }
+            }
 
             if (cityID != "")
             {
@@ -228,7 +238,7 @@ namespace WeatherApp
             else
             {
                 MessageBoxResult result = MessageBox.Show("City you were looking for can't be found. Try again.");
-            } 
+            }
         }
 
         public void RemoveText(object sender, EventArgs e)
@@ -249,7 +259,7 @@ namespace WeatherApp
             {
                 using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
                 {
-                    sw.WriteLine(info.Location);
+                    sw.WriteLine(info.ID + "," + info.Location);
                     MenuItem item = new MenuItem();
                     item.Header = info.Location;
                     item.Click += ShowFavourite;
@@ -273,7 +283,8 @@ namespace WeatherApp
             }
 
             var lines = File.ReadAllLines(path).Skip(1);
-            if (lines.Count() > 5) {
+            if (lines.Count() > 5)
+            {
                 File.WriteAllLines(path, lines);
             }
         }
@@ -285,7 +296,7 @@ namespace WeatherApp
                 foreach (string line in File.ReadLines("favourites.txt"))
                     if (city == line)
                         return true;
-            } 
+            }
             return false;
         }
 
